@@ -30,7 +30,7 @@ export default function CategoryEdit() {
     formData.append("_id", userId);
     formData.append("description", description);
     try {
-      const response = await axios.post("http://https://my-backend-api-usbu.onrender.com/update-category", formData);
+      const response = await axios.post("https://my-backend-api-usbu.onrender.com/update-category", formData);
       const msg = response.data.message;
 
       if (response.data.success) {

@@ -24,7 +24,7 @@ export default function Category() {
 
     const categoryview = async () => {
         try {
-            const response = await axios.post('http://https://my-backend-api-usbu.onrender.com/view-category');
+            const response = await axios.post('https://my-backend-api-usbu.onrender.com/view-category');
             if (Array.isArray(response.data.data)) {
                 setUserData(response.data.data);
             } else {
@@ -50,7 +50,7 @@ export default function Category() {
             confirmButtonText: "Yes, delete it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                await axios.post('http://https://my-backend-api-usbu.onrender.com/delete-category', { _id: cat_Id });
+                await axios.post('https://my-backend-api-usbu.onrender.com/delete-category', { _id: cat_Id });
                 Swal.fire("Deleted!", "Your category has been deleted.", "success");
                 categoryview();
             }
@@ -60,7 +60,7 @@ export default function Category() {
     const searchCat = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://https://my-backend-api-usbu.onrender.com/serach-category", { name });
+            const response = await axios.post("https://my-backend-api-usbu.onrender.com/serach-category", { name });
             if (response.data.success) {
                 setUserData(response.data.data);
             }
@@ -86,7 +86,7 @@ export default function Category() {
             confirmButtonText: "Yes, update it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                await axios.post('http://https://my-backend-api-usbu.onrender.com/category-status', { _id: cat_Id });
+                await axios.post('https://my-backend-api-usbu.onrender.com/category-status', { _id: cat_Id });
                 Swal.fire("Updated!", "Status has been updated.", "success");
                 categoryview();
             }
@@ -270,7 +270,7 @@ export default function Category() {
                                                         <th>{indexOfFirstItem + index + 1}</th>
                                                         <td>
                                                             <img
-                                                                src={`http://https://my-backend-api-usbu.onrender.com/uploads/${category.image}`}
+                                                                src={`https://my-backend-api-usbu.onrender.com/uploads/${category.image}`}
                                                                 alt={category.name || "No image"}
                                                                 style={{
                                                                     height: '40px',

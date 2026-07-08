@@ -9,7 +9,7 @@ export default function Categoriess(){
     
  const [Categories, setCategories] = useState([]);
   useEffect(() => {
-    axios.get('http://https://my-backend-api-usbu.onrender.com/viewall-category/frontend')
+    axios.get('https://my-backend-api-usbu.onrender.com/viewall-category/frontend')
       .then(res => {
         if (res.data.success) {
           setCategories(res.data.data || []);
@@ -52,7 +52,7 @@ export default function Categoriess(){
                                               <div
                                                 className="product__item__pic set-bg"
                                                 // data-setbg="img/product/product-1.jpg"
-                                                style={{ backgroundImage: `url('http://https://my-backend-api-usbu.onrender.com/uploads/${value.image}')` }}
+                                                style={{ backgroundImage: `url('https://my-backend-api-usbu.onrender.com/uploads/${value.image}')` }}
                         
                                               >
                                                 <div className="label new">New</div>

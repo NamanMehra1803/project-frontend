@@ -15,7 +15,7 @@ function Login() {
     e.preventDefault();
     try {
       const body = { email, password };
-      const ApiUrl = 'http://https://my-backend-api-usbu.onrender.com/api/user/login'; 
+      const ApiUrl = 'https://my-backend-api-usbu.onrender.com/api/user/login'; 
       const response = await axios.post(ApiUrl, body);
       const msg = response.data.message;
 

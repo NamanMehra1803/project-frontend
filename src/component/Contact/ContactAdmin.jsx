@@ -19,7 +19,7 @@ function Contact() {
     // Fetch contact messages
     const contactview = async () => {
         try {
-            const ApiUrl = 'http://https://my-backend-api-usbu.onrender.com/view-contact';
+            const ApiUrl = 'https://my-backend-api-usbu.onrender.com/view-contact';
             const response = await axios.post(ApiUrl);
             if (Array.isArray(response.data.data)) {
                 setContactData(response.data.data);
@@ -73,7 +73,7 @@ function Contact() {
                 confirmButtonText: "Yes, delete it!"
             }).then(async (result) => {
                 if (result.isConfirmed) {
-                    await axios.post('http://https://my-backend-api-usbu.onrender.com/delete-contact', { _id: user_Id });
+                    await axios.post('https://my-backend-api-usbu.onrender.com/delete-contact', { _id: user_Id });
                     Swal.fire({ title: "Deleted!", text: "Your file has been deleted.", icon: "success" });
                     contactview();
                 }
@@ -240,7 +240,7 @@ function Contact() {
                                     <strong style={{ color: '#1976d2' }}>Image:</strong>
                                     <br />
                                     <img
-                                        src={`http://https://my-backend-api-usbu.onrender.com/uploads/${selectedContact.image}`}
+                                        src={`https://my-backend-api-usbu.onrender.com/uploads/${selectedContact.image}`}
                                         alt="User"
                                         style={{
                                             width: '180px',

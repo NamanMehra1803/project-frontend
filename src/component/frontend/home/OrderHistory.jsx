@@ -12,7 +12,7 @@ export default function OrderHistory() {
 
   const fetchOrders = async (user_id) => {
     try {
-      const response = await axios.get(`http://https://my-backend-api-usbu.onrender.com/view-Order/${user_id}`);
+      const response = await axios.get(`https://my-backend-api-usbu.onrender.com/view-Order/${user_id}`);
       if (response.data.success) {
         setOrders(response.data.data);
       } else {
@@ -38,7 +38,7 @@ export default function OrderHistory() {
     });
     if (confirm.isConfirmed) {
       try {
-        await axios.post("http://https://my-backend-api-usbu.onrender.com/Cancel-from-Order", { _id: OrderId });
+        await axios.post("https://my-backend-api-usbu.onrender.com/Cancel-from-Order", { _id: OrderId });
         Swal.fire({
           icon: "success",
           title: "Cancelled!",
@@ -113,7 +113,7 @@ export default function OrderHistory() {
                     {/* Product Info */}
                     <div className="d-flex">
                       <img
-                        src={`http://https://my-backend-api-usbu.onrender.com/uploads/${order.product_id?.image}`}
+                        src={`https://my-backend-api-usbu.onrender.com/uploads/${order.product_id?.image}`}
                         alt={order.product_id?.name}
                         style={{ width: "120px", height: "120px", objectFit: "contain" }}
                         className="me-4 rounded shadow-sm"

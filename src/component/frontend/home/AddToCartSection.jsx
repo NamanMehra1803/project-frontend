@@ -14,7 +14,7 @@ export default function Cart() {
   const viewCart = async (user_id) => {
     try {
       const response = await axios.get(
-        `http://https://my-backend-api-usbu.onrender.com/view-cart/${user_id}`
+        `https://my-backend-api-usbu.onrender.com/view-cart/${user_id}`
       );
 
       if (response.data.success) {
@@ -30,7 +30,7 @@ export default function Cart() {
   const removeFromCart = async (cartItemId) => {
     const user_id = localStorage.getItem("user-id");
     try {
-      await axios.post('http://https://my-backend-api-usbu.onrender.com/remove-from-cart', { _id: cartItemId });
+      await axios.post('https://my-backend-api-usbu.onrender.com/remove-from-cart', { _id: cartItemId });
       Swal.fire({
         icon: "success",
         title: "Removed!",
@@ -75,7 +75,7 @@ const placeOrder = async () => {
 
   try {
     for (const item of cartItems) {
-      await axios.post("http://https://my-backend-api-usbu.onrender.com/order", {
+      await axios.post("https://my-backend-api-usbu.onrender.com/order", {
         user_id,
         product_id: item.product_id._id,
       });
@@ -89,7 +89,7 @@ const placeOrder = async () => {
       timer: 2000
     });
     for (const item of cartItems) {
-      await axios.post("http://https://my-backend-api-usbu.onrender.com/remove-from-cart", { _id: item._id });
+      await axios.post("https://my-backend-api-usbu.onrender.com/remove-from-cart", { _id: item._id });
     }
     viewCart(user_id);
   } catch (error) {
@@ -145,7 +145,7 @@ const placeOrder = async () => {
                       >
                         <div className="d-flex align-items-center">
                           <img
-                            src={`http://https://my-backend-api-usbu.onrender.com/uploads/${item.product_id.image}`}
+                            src={`https://my-backend-api-usbu.onrender.com/uploads/${item.product_id.image}`}
                             alt={item.product_id.name}
                             className="rounded-3 shadow-sm"
                             style={{

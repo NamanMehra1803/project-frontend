@@ -15,7 +15,7 @@ export default function Profile() {
   const viewProfile = async (userId) => {
     try {
       const body = { _id: userId };
-      const ApiUrl = 'http://www.https://my-backend-api-usbu.onrender.com/api/admin/my-profile';
+      const ApiUrl = 'http://www.my-backend-api-usbu.onrender.com/api/admin/my-profile';
       const response = await axios.post(ApiUrl, body);
       const msg = response.data.message;
       if (response.data.success) {

@@ -11,7 +11,7 @@ export default function Add() {
   const { state: lineData } = useLocation();
   const profileId = localStorage.getItem("admin-id");
 
-// image filter by http://www.https://my-backend-api-usbu.onrender.com/uploads/image_1756728540341.jpg
+// image filter by http://www.my-backend-api-usbu.onrender.com/uploads/image_1756728540341.jpg
   const fileName =lineData.image.substring(lineData.image.lastIndexOf('/') + 1);
 
 
@@ -36,7 +36,7 @@ export default function Add() {
     formData.append("address", address);
     formData.append("image", image);
     try {
-      const { data } = await axios.post("http://https://my-backend-api-usbu.onrender.com/api/admin/profileUpdate", formData);
+      const { data } = await axios.post("https://my-backend-api-usbu.onrender.com/api/admin/profileUpdate", formData);
       if (data.success) {
         toast.success(data.message);
         setTimeout(() => navigate("/myprofile"), 2000);

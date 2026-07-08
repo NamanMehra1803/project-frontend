@@ -15,7 +15,7 @@ export default function ProductDetail() {
   // ================= PRODUCT =================
   useEffect(() => {
     axios
-      .post("http://https://my-backend-api-usbu.onrender.com/view-product-/frontend", { _id })
+      .post("https://my-backend-api-usbu.onrender.com/view-product-/frontend", { _id })
       .then((res) => setProduct(res.data?.data || {}))
       .catch(() => setProduct({}));
   }, []);
@@ -26,7 +26,7 @@ export default function ProductDetail() {
     if (!user_id) return;
 
     axios
-      .get(`http://https://my-backend-api-usbu.onrender.com/view-cart/${user_id}`)
+      .get(`https://my-backend-api-usbu.onrender.com/view-cart/${user_id}`)
       .then((res) => {
         if (res.data.success) {
           const formatted = res.data.data.map((item) => ({
@@ -53,7 +53,7 @@ export default function ProductDetail() {
     }
 
     try {
-      const res = await axios.post("http://https://my-backend-api-usbu.onrender.com/Add-cart", {
+      const res = await axios.post("https://my-backend-api-usbu.onrender.com/Add-cart", {
         user_id,
         product_id: product._id,
         quantity: qty,
@@ -116,7 +116,7 @@ export default function ProductDetail() {
             {/* IMAGE */}
             <div className="col">
               <img
-                src={`http://https://my-backend-api-usbu.onrender.com/uploads/${product.image}`}
+                src={`https://my-backend-api-usbu.onrender.com/uploads/${product.image}`}
                 style={{ width: "100%", borderRadius: "10px" }}
               />
             </div>
@@ -162,7 +162,7 @@ export default function ProductDetail() {
               cartItems.map((item) => (
                 <div key={item._id} className="cart-item">
 
-                  <img src={`http://https://my-backend-api-usbu.onrender.com/uploads/${item.image}`} />
+                  <img src={`https://my-backend-api-usbu.onrender.com/uploads/${item.image}`} />
 
                   <div>
                     <h5>{item.name}</h5>

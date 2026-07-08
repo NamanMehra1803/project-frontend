@@ -39,7 +39,7 @@ function Dashboard() {
 
   const dashboardview = async () => {
     try {
-      const response = await axios.post('http://https://my-backend-api-usbu.onrender.com/userViewdashboard');
+      const response = await axios.post('https://my-backend-api-usbu.onrender.com/userViewdashboard');
 
       console.log("qqqqqq", response.data.data)
       setUserData(response.data.data || []);
@@ -50,7 +50,7 @@ function Dashboard() {
 
   const ProductView = async () => {
     try {
-      const response = await axios.post('http://https://my-backend-api-usbu.onrender.com/productViewdashboard');
+      const response = await axios.post('https://my-backend-api-usbu.onrender.com/productViewdashboard');
       setProductData(response.data.data || []);
     } catch (err) {
       console.error(err.message);
@@ -59,7 +59,7 @@ function Dashboard() {
 
   const CategoryView = async () => {
     try {
-      const response = await axios.post('http://https://my-backend-api-usbu.onrender.com/categoryViewdashboard');
+      const response = await axios.post('https://my-backend-api-usbu.onrender.com/categoryViewdashboard');
       setCategoryData(response.data.data || []);
     } catch (err) {
       console.error(err.message);
@@ -176,7 +176,7 @@ function Dashboard() {
                             <td>{index + 1}</td>
                             <td>
                               <img
-                                src={`http://https://my-backend-api-usbu.onrender.com/uploads/${user.image}`}
+                                src={`https://my-backend-api-usbu.onrender.com/uploads/${user.image}`}
                                 alt={user.name || "No image"}
                                 style={{
                                   height: '40px',
@@ -230,7 +230,7 @@ function Dashboard() {
                             <td>{index + 1}</td>
                             <td>
                               <img
-                                src={`http://https://my-backend-api-usbu.onrender.com/uploads/${product.image}`}
+                                src={`https://my-backend-api-usbu.onrender.com/uploads/${product.image}`}
                                 alt={product.name || "No image"}
                                 style={{
                                   height: '40px',
@@ -282,7 +282,7 @@ function Dashboard() {
                             <td>{index + 1}</td>
                             <td>
                               <img
-                                src={`http://https://my-backend-api-usbu.onrender.com/uploads/${category.image}`}
+                                src={`https://my-backend-api-usbu.onrender.com/uploads/${category.image}`}
                                 alt={category.name || "No image"}
                                 style={{
                                   height: '40px',

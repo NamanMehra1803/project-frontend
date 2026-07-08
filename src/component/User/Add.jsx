@@ -37,7 +37,7 @@ export default function Add() {
     formData.append("image", image);
 
     try {
-      const response = await axios.post("http://https://my-backend-api-usbu.onrender.com/api/admin/addUser", formData);
+      const response = await axios.post("https://my-backend-api-usbu.onrender.com/api/admin/addUser", formData);
       const msg = response.data.message;
 
       if (response.data.success) {
