@@ -18,7 +18,7 @@ const MyProfile = () => {
   const viewProfile = async (userId) => {
     try {
       const body = { _id: userId };
-      const ApiUrl = "http://www.localhost:8080/api/user/my-profile";
+      const ApiUrl = "http://www.https://my-backend-api-usbu.onrender.com/api/user/my-profile";
       const response = await axios.post(ApiUrl, body);
       if (response.data.success) {
         setUserData(response.data.data);

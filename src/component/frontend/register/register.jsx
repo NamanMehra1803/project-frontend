@@ -36,7 +36,7 @@ export default function Register() {
     formData.append('password', password);
 
     try {
-      const response = await axios.post('http://localhost:8080/api/admin/register', formData);
+      const response = await axios.post('http://https://my-backend-api-usbu.onrender.com/api/admin/register', formData);
       const msg = response.data.message;
 
       if (response.data.success) {

@@ -15,7 +15,7 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const response = await axios.post('http://localhost:8080/add-contact', {
+      const response = await axios.post('http://https://my-backend-api-usbu.onrender.com/add-contact', {
         name,
         email,
         phone,

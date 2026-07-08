@@ -9,7 +9,7 @@ export default function Products() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/view-products/frontend")
+      .get("http://https://my-backend-api-usbu.onrender.com/view-products/frontend")
       .then((res) => {
         setProducts(res.data?.data || []);
       })
@@ -23,7 +23,7 @@ export default function Products() {
     if (!user_id) return toast.error("Please login first!");
 
     try {
-      const res = await axios.post("http://localhost:8080/Add-cart", {
+      const res = await axios.post("http://https://my-backend-api-usbu.onrender.com/Add-cart", {
         user_id,
         product_id,
         quantity: 1,
@@ -44,7 +44,7 @@ export default function Products() {
     if (!user_id) return toast.error("Please login first!");
 
     try {
-      const res = await axios.post("http://localhost:8080/add-wishlist", {
+      const res = await axios.post("http://https://my-backend-api-usbu.onrender.com/add-wishlist", {
         user_id,
         product_id,
       });
@@ -81,7 +81,7 @@ export default function Products() {
                   <div
                     className="img"
                     style={{
-                      backgroundImage: `url(http://localhost:8080/uploads/${p.image})`,
+                      backgroundImage: `url(http://https://my-backend-api-usbu.onrender.com/uploads/${p.image})`,
                     }}
                   >
                     <span className="badge">New</span>

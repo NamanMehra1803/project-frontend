@@ -13,7 +13,7 @@ const [Categories, setCategories] = useState([]);
     const body = {
         cat_id:cat_id
     }
-    axios.post('http://localhost:8080/view-productCat_id-/frontend',body)
+    axios.post('http://https://my-backend-api-usbu.onrender.com/view-productCat_id-/frontend',body)
       .then(res => {
         if (res.data.success) {
           setCategories(res.data.data || []);
@@ -58,13 +58,13 @@ const [Categories, setCategories] = useState([]);
                                         <div
                                           className="product__item__pic set-bg"
                                           style={{
-                                            backgroundImage: `url('http://localhost:8080/uploads/${value.image}')`
+                                            backgroundImage: `url('http://https://my-backend-api-usbu.onrender.com/uploads/${value.image}')`
                                           }}
                                         >
                                           <div className="label new">New</div>
                                           <ul className="product__hover">
                                             <li>
-                                              <a href={`http://localhost:8080/uploads/${value.image}`} className="image-popup">
+                                              <a href={`http://https://my-backend-api-usbu.onrender.com/uploads/${value.image}`} className="image-popup">
                                                 <span className="arrow_expand" />
                                               </a>
                                             </li>

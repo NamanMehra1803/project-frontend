@@ -34,7 +34,7 @@ export default function ProductAdd() {
     formData.append("_id", proId);
 
     try {
-      const response = await axios.post("http://localhost:8080/updated-product", formData);
+      const response = await axios.post("http://https://my-backend-api-usbu.onrender.com/updated-product", formData);
       const msg = response.data.message;
 
       if (response.data.success) {
@@ -62,7 +62,7 @@ export default function ProductAdd() {
    // view category
     const categoryView = async () => {
       try {
-        const ApiUrl = 'http://localhost:8080/view-categoryes';
+        const ApiUrl = 'http://https://my-backend-api-usbu.onrender.com/view-categoryes';
         const response = await axios.post(ApiUrl);
         if (response.data.success) {
           setCategory(response.data.data)

@@ -19,7 +19,7 @@ export default function OrderManager() {
     const searchUser = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8080/order-Search', { firstName, email });
+            const response = await axios.post('http://https://my-backend-api-usbu.onrender.com/order-Search', { firstName, email });
             if (response.data.success) setOrders(response.data.data);
         } catch {
             // Handle error
@@ -35,7 +35,7 @@ export default function OrderManager() {
 
     const fetchOrders = async () => {
         try {
-            const response = await axios.post('http://localhost:8080/orders-view');
+            const response = await axios.post('http://https://my-backend-api-usbu.onrender.com/orders-view');
             if (response.data.success) {
                 setOrders(response.data.data);
             }
@@ -233,7 +233,7 @@ export default function OrderManager() {
                                                 <td>{indexOfFirstItem + index + 1}</td>
                                                 <td>
                                                     <img
-                                                        src={`http://localhost:8080/uploads/${order.user_id?.image}`}
+                                                        src={`http://https://my-backend-api-usbu.onrender.com/uploads/${order.user_id?.image}`}
                                                         style={{
                                                             height: '40px',
                                                             width: '40px',
@@ -249,7 +249,7 @@ export default function OrderManager() {
                                                 </td>
                                                 <td>
                                                     <img
-                                                        src={`http://localhost:8080/uploads/${order.product_id?.image}`}
+                                                        src={`http://https://my-backend-api-usbu.onrender.com/uploads/${order.product_id?.image}`}
                                                         style={{
                                                             height: '40px',
                                                             width: '40px',

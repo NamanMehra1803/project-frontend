@@ -20,7 +20,7 @@ function User() {
 
     const Userview = async () => {
         try {
-            const response = await axios.post('http://localhost:8080/userview');
+            const response = await axios.post('http://https://my-backend-api-usbu.onrender.com/userview');
             if (Array.isArray(response.data.data)) setUserData(response.data.data);
         } catch {}
     };
@@ -28,7 +28,7 @@ function User() {
     const searchUser = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8080/userSearch', { firstName, email });
+            const response = await axios.post('http://https://my-backend-api-usbu.onrender.com/userSearch', { firstName, email });
             if (response.data.success) setUserData(response.data.data);
         } catch {}
     };
@@ -47,7 +47,7 @@ function User() {
                 confirmButtonText: "Yes, delete it!"
             }).then(async (result) => {
                 if (result.isConfirmed) {
-                    await axios.post('http://localhost:8080/api/admin/userdelete', { _id: user_Id });
+                    await axios.post('http://https://my-backend-api-usbu.onrender.com/api/admin/userdelete', { _id: user_Id });
                     Swal.fire({ title: "Deleted!", text: "Your file has been deleted.", icon: "success" });
                     Userview();
                 }
@@ -67,7 +67,7 @@ function User() {
                 confirmButtonText: "Yes, update it!"
             }).then(async (result) => {
                 if (result.isConfirmed) {
-                    await axios.post('http://localhost:8080/statusUpdate', { _id: user_Id });
+                    await axios.post('http://https://my-backend-api-usbu.onrender.com/statusUpdate', { _id: user_Id });
                     Swal.fire({ title: "Update!", text: "The status has been successfully updated", icon: "success" });
                     Userview();
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -160,7 +160,7 @@ function User() {
                                             currentItems.map((user, index) => (
                                                 <tr key={user._id}>
                                                     <th>{indexOfFirstItem + index + 1}</th>
-                                                    <td><img src={`http://localhost:8080/uploads/${user.image}`} alt={user.firstName || "No image"} style={{ height: '40px', width: '40px', borderRadius: '20%', objectFit: 'cover' }} /></td>
+                                                    <td><img src={`http://https://my-backend-api-usbu.onrender.com/uploads/${user.image}`} alt={user.firstName || "No image"} style={{ height: '40px', width: '40px', borderRadius: '20%', objectFit: 'cover' }} /></td>
                                                     <td>{user.firstName}</td>
                                                     <td>{user.lastName}</td>
                                                     <td>{user.email}</td>

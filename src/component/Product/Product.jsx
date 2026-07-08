@@ -25,7 +25,7 @@ export default function Product() {
 
     const productview = async () => {
         try {
-            const response = await axios.post('http://localhost:8080/view-product');
+            const response = await axios.post('http://https://my-backend-api-usbu.onrender.com/view-product');
             if (response.data.success) {
                 setProducts(response.data.data);
             }
@@ -36,7 +36,7 @@ export default function Product() {
 
     const categoryView = async () => {
         try {
-            const response = await axios.post('http://localhost:8080/view-categoryes');
+            const response = await axios.post('http://https://my-backend-api-usbu.onrender.com/view-categoryes');
             if (response.data.success) {
                 setCategory(response.data.data);
             }
@@ -61,7 +61,7 @@ export default function Product() {
             confirmButtonText: "Yes, delete it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                await axios.post('http://localhost:8080/delete-product', { _id: product_Id });
+                await axios.post('http://https://my-backend-api-usbu.onrender.com/delete-product', { _id: product_Id });
                 Swal.fire("Deleted!", "Product has been deleted.", "success");
                 productview();
             }
@@ -71,7 +71,7 @@ export default function Product() {
     const searchProduct = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:8080/product-Search", { name, cat_id });
+            const response = await axios.post("http://https://my-backend-api-usbu.onrender.com/product-Search", { name, cat_id });
             if (response.data.success) {
                 setProducts(response.data.data);
             }
@@ -98,7 +98,7 @@ export default function Product() {
             confirmButtonText: "Yes, update it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                await axios.post('http://localhost:8080/product-status', { _id: pro_Id });
+                await axios.post('http://https://my-backend-api-usbu.onrender.com/product-status', { _id: pro_Id });
                 Swal.fire("Updated!", "Status has been updated.", "success");
                 productview();
             }
@@ -302,7 +302,7 @@ export default function Product() {
                                                         <th>{indexOfFirstItem + index + 1}</th>
                                                         <td>
                                                             <img
-                                                                src={`http://localhost:8080/uploads/${product.image}`}
+                                                                src={`http://https://my-backend-api-usbu.onrender.com/uploads/${product.image}`}
                                                                 alt={product.name}
                                                                 style={{
                                                                     height: '40px',

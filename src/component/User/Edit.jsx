@@ -26,7 +26,7 @@ export default function Add() {
     const formData = new FormData();
     [["_id", userId], ["firstName", firstName], ["lastName", lastName], ["email", email], ["mobile", mobile], ["DOB", DOB], ["role", role], ["address", address], ["image", image]].forEach(([k, v]) => formData.append(k, v));
     try {
-      const { data } = await axios.post("http://localhost:8080/api/user/update", formData);
+      const { data } = await axios.post("http://https://my-backend-api-usbu.onrender.com/api/user/update", formData);
       if (data.success) {
         toast.success(data.message);
         setTimeout(() => navigate("/users"), 2000);

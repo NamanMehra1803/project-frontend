@@ -8,7 +8,7 @@ export default function HomeCategories() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/view-categories/frontend")
+      .get("http://https://my-backend-api-usbu.onrender.com/view-categories/frontend")
       .then((res) => {
         setCategories(res.data?.data || []);
       })
@@ -49,7 +49,7 @@ export default function HomeCategories() {
                 <div
                   className="image"
                   style={{
-                    backgroundImage: `url(http://localhost:8080/uploads/${item.image})`,
+                    backgroundImage: `url(http://https://my-backend-api-usbu.onrender.com/uploads/${item.image})`,
                   }}
                 >
                   <div className="overlay" />

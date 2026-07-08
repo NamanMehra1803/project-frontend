@@ -13,7 +13,7 @@ export default function Wishlist() {
   const viewWishlist = async (user_id) => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/view-wishlist/${user_id}`
+        `http://https://my-backend-api-usbu.onrender.com/view-wishlist/${user_id}`
       );
       if (response.data.success) {
         setWishlistItems(response.data.data);
@@ -28,7 +28,7 @@ export default function Wishlist() {
   const removeFromWishlist = async (wishlistItemId) => {
     const user_id = localStorage.getItem("user-id");
     try {
-      await axios.post("http://localhost:8080/remove-from-wishlist", {
+      await axios.post("http://https://my-backend-api-usbu.onrender.com/remove-from-wishlist", {
         _id: wishlistItemId,
       });
       Swal.fire({
@@ -123,7 +123,7 @@ export default function Wishlist() {
                       <tr key={item._id} style={{ borderBottom: "1px solid #eee" }}>
                         <td className="text-center">
                           <img
-                            src={`http://localhost:8080/uploads/${item.product_id.image}`}
+                            src={`http://https://my-backend-api-usbu.onrender.com/uploads/${item.product_id.image}`}
                             alt={item.product_id.name}
                             style={{
                               width: "110px",

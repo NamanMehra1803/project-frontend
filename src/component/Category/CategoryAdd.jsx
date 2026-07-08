@@ -29,7 +29,7 @@ export default function CategoryAdd() {
     }
     formData.append("description", description);
     try {
-      const response = await axios.post("http://localhost:8080/add-category", formData);
+      const response = await axios.post("http://https://my-backend-api-usbu.onrender.com/add-category", formData);
       const msg = response.data.message;
 
       if (response.data.success) {
