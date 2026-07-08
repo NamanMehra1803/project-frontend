@@ -1,0 +1,279 @@
+import React, { Fragment, useEffect, useMemo } from 'react'
+import Header from '../Utills/Header'
+import Sidebar from '../Utills/Sidebar'
+import Footer from '../Utills/Footer'
+import { Modal } from 'react-bootstrap'
+import { useState } from 'react'
+import Axios from '../../Confing/axios'
+import Table from '../../Table/Table'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
+import * as yup from 'yup';
+import { toast } from 'react-toastify'
+
+function Specializations() {
+    const [open, setOpen] = useState(false)
+    const [data, setData] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+    const [userdata , setUserdata] = useState({})
+const handlePagination = (pagination) => {
+    Axios.get("admin/get-specialization-list").then((res) => {
+        if (res.data.status) {
+            setData(res.data.data)
+            setIsLoading(false)
+        }
+    }).catch((err) => {
+        console.log(err)
+    })
+}
+   
+    const loginSchema = yup.object().shape({
+        name: yup
+            .string()
+            .required("Name is required")
+            .max(100, "Name must be at most 100 characters long"),
+    
+        image: yup
+            .mixed()
+            .required("Image is required")
+    });
+    const handledelete = (id)=>{
+        if (window.confirm('Are you sure you want to delete this user?')) {
+         const data ={
+          id:id
+         }
+         Axios.post('admin/delete-specialization-list',data).then((res)=>{
+          if(res.data.status){
+            toast.success(res.data.message)
+             setOpen(false)
+             handlePagination()
+          }
+         }).catch((err)=>{
+          console.log(err)
+         })
+        }
+        }
+    const { register,setValue, formState: { errors }, handleSubmit } = useForm({
+        resolver: yupResolver(loginSchema)
+    });
+
+    const handleImage =(e)=>{
+    setValue('image',e)
+    }
+    const handlesubmit = (send) => {
+      if(Object.keys(userdata).length == 0){
+        const formData = new FormData();
+        formData.append('name', send.name)
+        formData.append('file', send.image)
+        Axios.post('admin/create-specialization-list',formData).then((res)=>{
+            if(res.data.status){
+                console.log(res)
+                setOpen(false)
+                handlePagination()
+
+            }
+        }).catch((err)=>{
+            console.log(err)
+        })
+      }else{
+        const formData = new FormData();
+        formData.append('name', send.name)
+        formData.append('file', send.image)
+        formData.append('id', userdata.id)
+        Axios.post('admin/update-specialization-list',formData).then((res)=>{
+            if(res.data.status){
+                console.log(res)
+                setOpen(false)
+                handlePagination()
+
+            }
+        }).catch((err)=>{
+            console.log(err)
+        })
+      }
+    }
+    const handleOpen =(e)=>{
+        console.log(e)
+        setUserdata(e)
+        setValue('image',e.imgId)
+        setOpen(true)
+    }
+    const handleStatus =(data)=>{
+        const senddata ={
+            id:data.id,
+            status:data.active ? 0 : 1
+        }
+        Axios.post("admin/update-specialization-status",senddata).then((res)=>{
+            if(res.data.status){
+                toast.success(res.data.message)
+            }else{
+                alert(res.data.message)
+            }
+        }).catch((err)=>{
+            console.log(err)
+        })
+    }
+    
+    const columns = useMemo(
+        () => [
+            {
+                accessorKey: 'S.NO',
+                header: 'S.NO',
+                accessorFn: (row, index) => {
+                    return index + 1;
+                },
+            },
+            {
+                accessorKey: 'name',
+                header: 'Name',
+                enableEditing: false,
+                size: 150,
+            },
+            {
+                accessorKey: 'imgId',
+                header: 'Image',
+                accessorFn: (row) => {
+                    return <img src={row.imgId} alt='image' width={"50px"} height={"50px"} />
+                },
+            },
+            {
+                accessorKey: 'createdAt',
+                header: 'Created At',
+                accessorFn: (row) => {
+                    return new Date(row.createdAt).toLocaleDateString()
+                },
+            },
+            {
+                accessorKey: 'updatedAt',
+                header: 'Updated At',
+                accessorFn: (row) => {
+                    return new Date(row.updatedAt).toLocaleDateString()
+                },
+            },
+            {
+                accessorKey: 'active',
+                header: 'Status',
+                accessorFn: (row) => {
+                    return (
+                   <label class="switch">
+                      <input type="checkbox" defaultChecked={row?.active == true ? true :false} onClick={()=>handleStatus(row)}/>
+                       <span class="slider round"></span>
+                          </label>
+                    )
+                },
+            },
+            {
+                accessorKey: 'actions',
+                header: 'Actions',
+                accessorFn: (row, index) => {
+                    return (
+                        <div>
+                            <button className="btn btn-primary me-md-2" onClick={()=>handleOpen(row)}  >Edit</button>
+                            <button className="btn btn-danger" onClick={()=>handledelete(row.id)} >Delete</button>
+                        </div>
+                    );
+                },
+            },
+        ],
+
+    );
+    const handlecancle =()=>{
+        setUserdata({ ...userdata, imgId: '' });
+        setValue('image','')
+    }
+    const handleClose =()=>{
+        setOpen(false)
+        setUserdata({})
+    }
+
+    return (
+        <Fragment>
+            <div className="layout-wrapper">
+                <Sidebar />
+                <div className="page-content">
+                    <Header />
+                    <div className="px-3">
+                        {/* Start Content*/}
+                        <div className="container-fluid">
+                            {/* start page title */}
+                            <div className="py-3 py-lg-4">
+                                <div className="row">
+                                    <div className="col-lg-6">
+                                        <h4 className="page-title mb-0"> Specializations</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <a className='btn btn-primary mb-5' onClick={() => setOpen(true)}>Create New Specializations </a>
+                            <div className="row">
+                                <div className='row'>
+                                    <Table columns={columns} data={data} isLoading={isLoading} handlePagination={handlePagination} />
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                    <Footer />
+                </div>
+            </div>
+
+            <Modal show={open}  key={open} onHide={handleClose} className="modal-lg">
+        <div>
+        <Modal.Header closeButton>
+          <Modal.Title>Specializations</Modal.Title>
+        </Modal.Header>
+            <div className="modal-body customMODEL pb-0">
+                {/* <h2>Specializations</h2> */}
+                <form className="common-form-area-left-inner-form" onSubmit={handleSubmit(handlesubmit)} >
+                    <div className="form-row">
+                        <div className="mb-4">
+                            <label className="form-label text-dark">Name</label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                className="form-control"
+                                defaultValue={userdata.name || ''}
+                                {...register("name")}
+                            />
+                            <ErrorMessage
+                                errors={errors}
+                                name="name"
+                                render={({ message }) => <p className='error' style={{ color: 'red' }}>{message}</p>}
+                            />
+                        </div>
+                        <div className="mb-5">
+                            <label className="form-label text-dark">Image</label>
+                            {userdata.imgId ? 
+                            <div>
+                                <img src='data:image/png;base64,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' width={"22px"} height={"22px"} onClick={()=>handlecancle()}/>
+                        <img src={userdata.imgId} alt='image' width={"40px"}  height={"40px"} /> </div>:
+                            <input
+                                type="file"
+                                id="image"
+                                name="image"
+                                accept="image/*"
+                                className="form-control"
+                                onChange={(e)=>handleImage(e.target.files[0])}
+                            />
+                        }
+                            <ErrorMessage
+                                errors={errors}
+                                name="image" // Fixed typo here
+                                render={({ message }) => <p className='error' style={{ color: 'red' }}>{message}</p>}
+                            />
+                        </div>
+                    </div>
+                    <div className="modal-footer py-2">
+                        <button className="btn btn-secondary" onClick={()=>handleClose()}>Close</button>
+                        <button className="btn btn-success">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </Modal>
+
+        </Fragment>
+    )
+}
+
+export default Specializations
