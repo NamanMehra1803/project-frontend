@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Agar React Router use kar rahe ho toh a tag ki jagah Link use kar sakte ho
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   return (
@@ -7,10 +7,9 @@ export default function Header() {
       {/* Header Section Begin */}
       <header className="header">
         <div className="container-fluid">
-          {/* row ko flex-wrap rakhenge taaki mobile me niche wrap ho sake ya adjust ho sake */}
-          <div className="row align-items-center">
+          <div className="row align-items-center" style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             
-            {/* Logo: Mobile me aadha space lega (col-6) */}
+            {/* Logo Section */}
             <div className="col-xl-3 col-lg-2 col-6">
               <div className="header__logo">
                 <a href="./index.html">
@@ -19,7 +18,7 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Menu: Laptop me dikhega, mobile me d-none se chhup jayega (kyunki mobile me canvas menu hota hai) */}
+            {/* Laptop Menu (Mobile me automatic hide) */}
             <div className="col-xl-6 col-lg-7 d-none d-lg-block">
               <nav className="header__menu">
                 <ul>
@@ -42,30 +41,24 @@ export default function Header() {
               </nav>
             </div>
 
-            {/* Right Side (Login/Widgets): Mobile me bhi dikhega (col-6), text-right taaki right me chipka rahe */}
-            <div className="col-xl-3 col-lg-3 col-6 text-right">
-              <div className="header__right d-flex align-items-center justify-content-end">
+            {/* Right Side Section - Isko humne zabardasti mobile me visible kiya hai */}
+            <div className="col-xl-3 col-lg-3 col-6" style={{ display: 'block !important' }}>
+              <div className="header__right" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', visibility: 'visible', opacity: 1 }}>
                 
-                {/* Login/Register: style se thoda gap de diya taaki mobile me tight na ho */}
-                <div className="header__right__auth" style={{ marginRight: '15px', display: 'inline-block' }}>
-                  <Link to="/user-loging" style={{ marginRight: '10px' }}>Login</Link>
-                  <Link to="/user-register">Register</Link>
+                {/* 🔓 LOGIN/REGISTER BUTTONS - Inhe inline style se force kiya hai phone me dikhne ke liye */}
+                <div style={{ display: 'flex', gap: '10px', marginRight: '15px', fontSize: '14px', fontWeight: '600' }}>
+                  <Link to="/user-loging" style={{ color: '#111', textDecoration: 'none' }}>Login</Link>
+                  <span style={{ color: '#ccc' }}>|</span>
+                  <Link to="/user-register" style={{ color: '#111', textDecoration: 'none' }}>Register</Link>
                 </div>
 
-                <ul className="header__right__widget d-flex align-items-center" style={{ margin: 0, padding: 0, listStyle: 'none' }}>
-                  <li style={{ marginLeft: '10px' }}>
-                    <span className="icon_search search-switch" />
-                  </li>
+                {/* Baaki icons jo laptop me dikhte the */}
+                <ul className="header__right__widget d-none d-md-flex" style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex' }}>
+                  <li style={{ marginLeft: '10px' }}><span className="icon_search search-switch" /></li>
                   <li style={{ marginLeft: '10px' }}>
                     <a href="#" style={{ position: 'relative' }}>
                       <span className="icon_heart_alt" />
-                      <div className="tip" style={{ position: 'absolute', top: '-10px', right: '-10px' }}>2</div>
-                    </a>
-                  </li>
-                  <li style={{ marginLeft: '10px' }}>
-                    <a href="#" style={{ position: 'relative' }}>
-                      <span className="icon_bag_alt" />
-                      <div className="tip" style={{ position: 'absolute', top: '-10px', right: '-10px' }}>2</div>
+                      <div className="tip">2</div>
                     </a>
                   </li>
                 </ul>
@@ -75,8 +68,8 @@ export default function Header() {
 
           </div>
 
-          {/* Hamburger Menu Icon (Sirf mobile me dikhega) */}
-          <div className="canvas__open d-lg-none">
+          {/* 3 Lines wala Hamburger Menu (Jo phone me dikh raha hai) */}
+          <div className="canvas__open">
             <i className="fa fa-bars" />
           </div>
 
